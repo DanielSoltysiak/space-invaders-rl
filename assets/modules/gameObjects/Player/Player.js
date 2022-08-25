@@ -12,7 +12,7 @@ export default class Player {
         this.height = 512 * scale
         this.position = {
             x: canvas.width / 2 - this.width / 2,
-            y: canvas.height - this.height - 10
+            y: canvas.height - this.height - 10 * multiplier
         }
         const takenSpace = []
         // for (let i = parseInt(this.position.y) ; i < parseInt(this.position.y + this.height); i++) {

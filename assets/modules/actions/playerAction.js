@@ -3,7 +3,9 @@ import { ACTION_SHOOT, ACTION_TURN_LEFT, ACTION_TURN_RIGHT, ALIVE_REWARD } from 
 import Projectile from '../gameObjects/Player/Projectile.js';
 
 export default function playerAction(canvas, player, action, playerProjectiles, points) {
+    player.velocity.x = 0
     points += ALIVE_REWARD
+    console.log(action)
     if(action === ACTION_TURN_LEFT && (player.position.x >= 0)) {
         player.velocity.x = -5 * multiplier
         // console.log('ACTION_TURN_LEFT')

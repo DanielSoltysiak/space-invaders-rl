@@ -7,11 +7,11 @@ stars(canvas, particles);
 
 function drawPlayer(canvasContext, player) {
     canvasContext.save()
-    canvasContext.globalAlpha = player.opacity
-    canvasContext.translate((player.position.x + player.width / 2) * 8, (player.position.y + player.height / 2) * 8)
+    // canvasContext.globalAlpha = player.opacity
+    // canvasContext.translate((player.position.x * 16 + player.width * 16 / 2), (player.position.y * 16 + player.height * 16 / 2))
 
-    canvasContext.rotate(player.rotation)
-    canvasContext.translate(-player.position.x - player.width / 2, -player.position.y - player.height / 2)
+    // canvasContext.rotate(player.rotation)
+    // canvasContext.translate(-player.position.x - player.width / 2, -player.position.y - player.height / 2)
 
     // const playerImage = new Image();
     // playerImage.scr = './img/spaceship.png'
@@ -20,7 +20,7 @@ function drawPlayer(canvasContext, player) {
     //     canvasContext.drawImage(playerImage, player.position.x, player.position.y, player.width, player.height)
     // }
     canvasContext.fillStyle = 'blue'
-    canvasContext.fillRect(player.position.x * 16, player.position.y * 16, player.width * 16, player.height * 16)
+    canvasContext.fillRect(player.position.x * 16, player.position.y * 16, player.width  * 16, player.height * 16)
     canvasContext.restore()
 }
 
@@ -47,7 +47,7 @@ function drawInvaderProjectile(canvasContext, invaderProjectile) {
     canvasContext.fillRect(invaderProjectile.position.x * 16, invaderProjectile.position.y * 16, invaderProjectile.width * 16, invaderProjectile.height * 16)
 }
 
-export function renderSpaceInvadersGame(canvas, game) { 
+export function renderSpaceInvadersGame(canvas, game) {
     const width = canvas.width;
     const height = canvas.height;
     const ctx = canvas.getContext('2d');
