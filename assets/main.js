@@ -10,11 +10,11 @@ import invadersSpawn from './modules/animations/invadersSpawn.js';
 
 import keysHandler from './modules/keysHandler.js';
 
-const player = new Player(canvas, canvasContext)
-const playerProjectiles = []
-const grids = []
-const invaderProjectiles = []
-const particles = []
+let player = new Player(canvas, canvasContext)
+let playerProjectiles = []
+let grids = []
+let invaderProjectiles = []
+let particles = []
 
 let frames = 0
 let game = {
@@ -22,12 +22,29 @@ let game = {
     active: true
 }
 
+function resetGame() {
+    const scoreEl = document.querySelector('#scoreEl');
+    scoreEl.innerHTML = 0;
+    player = new Player(canvas, canvasContext)
+    playerProjectiles = []
+    grids = []
+    invaderProjectiles = []
+    particles = []
+
+    frames = 0
+    game.over = false
+    game.active = true
+    stars(canvas, particles);
+    keysHandler(game, player, playerProjectiles);
+}
+
 stars(canvas, particles);
 
-export function animate() {
-    const state = {playerPosition: player.position, invaders: grids, invaderProjectiles: invaderProjectiles }
-    console.log(state);
-    if(!game.active) return
+function animate() {
+    if(!game.active) {
+        if(confirm('GAME OVER\nWanna try again?')) resetGame()
+        else return
+    }
     requestAnimationFrame(animate)
     canvasContext.fillStyle = 'black'
     canvasContext.fillRect(0, 0, canvas.width, canvas.height)

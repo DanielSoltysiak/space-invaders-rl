@@ -9,8 +9,8 @@ import playerAction from './modules/actions/playerAction.js';
 import invadersSpawn from './modules/actions/invadersSpawn.js';
 
 export const ALIVE_REWARD = 0.0001;
-export const KILL_REWARD = 10;
-export const DEATH_REWARD = -1000;
+export const KILL_REWARD = 1;
+export const DEATH_REWARD = -10;
 
 export const ACTION_SHOOT = 0;
 export const ACTION_TURN_RIGHT = 1;
@@ -111,11 +111,11 @@ export function getStateTensor(state, h, w) {
         });
 
         state[n].i.forEach(g => {
-            g.forEach(yx => buffer.set(1, n, yx[0], yx[1], 1));
+            g.forEach(yx => buffer.set(2, n, yx[0], yx[1], 1));
         });
 
         state[n].ip.forEach(ip => {
-            ip.forEach(yx => buffer.set(1, n, yx[0], yx[1], 1));
+            ip.forEach(yx => buffer.set(3, n, yx[0], yx[1], 1));
         });
     }
     return buffer.toTensor();

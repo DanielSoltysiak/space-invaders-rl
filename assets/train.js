@@ -51,6 +51,7 @@ export async function train(
     while (true) {
         agent.trainOnReplayBatch(batchSize, gamma, optimizer);
         const {cumulativeReward, done, pointsEarned} = agent.playStep();
+        // console.log(cumulativeReward)
         if (done) {
           const t = new Date().getTime();
           const framesPerSecond =
