@@ -15,13 +15,13 @@ export default class Grid {
 
         this.invaders = []
 
-        const colums = Math.floor(Math.random() * 10 + 5)
+        const columns = Math.floor(Math.random() * 10 + 5)
         const rows = Math.floor(Math.random() * 5 + 2)
 
-        this.width = colums * 30 * multiplier
+        this.width = columns * 30 * multiplier
         this.height = rows * 30 * multiplier
 
-        for (let x =0; x < colums; x++) {
+        for (let x =0; x < columns; x++) {
             for (let y =0; y < rows; y++) {
                 this.invaders.push(
                     new Invader(

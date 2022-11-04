@@ -5,6 +5,7 @@
   "main": "assets/mainRL.js",
   "type": "module",
   "scripts": {
+    "build": "cross-env NODE_ENV=production parcel build index.html   --public-url ./",
     "devStart": "nodemon server.js",
     "train": "babel-node ./assets/train.js",
     "runModel": "nodemon runModel.js",

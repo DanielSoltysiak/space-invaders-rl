@@ -57,7 +57,7 @@ export class SpaceInvadersGame {
     step(action) {
         let done = this.game.over;
         if (done) {
-            return {reward: DEATH_REWARD, done}
+            return {reward: this.points_ += DEATH_REWARD, done}
         }
         
         this.player_.update()
