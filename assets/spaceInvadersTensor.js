@@ -9,8 +9,8 @@ import playerAction from './modules/actions/playerAction.js';
 import invadersSpawn from './modules/actions/invadersSpawn.js';
 
 export const ALIVE_REWARD = 0.0001;
-export const KILL_REWARD = 10;
-export const DEATH_REWARD = -20000;
+export const KILL_REWARD = 7;
+export const DEATH_REWARD = -10000;
 
 export const ACTION_SHOOT = 0;
 export const ACTION_TURN_RIGHT = 1;
