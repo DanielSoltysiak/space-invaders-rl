@@ -1,5 +1,6 @@
 import particlesAnimation, { stars } from './modules/animations/particlesAnimation.js'
 import { canvas } from './constants/canvas.js';
+import { multipier } from './constants/tensorCanvas.js';
 
 const particles = []
 
@@ -8,7 +9,7 @@ stars(canvas, particles);
 function drawPlayer(canvasContext, player) {
     canvasContext.save()
     // canvasContext.globalAlpha = player.opacity
-    // canvasContext.translate((player.position.x * 16 + player.width * 16 / 2), (player.position.y * 16 + player.height * 16 / 2))
+    // canvasContext.translate((player.position.x * multipier + player.width * multipier / 2), (player.position.y * multipier + player.height * multipier / 2))
 
     // canvasContext.rotate(player.rotation)
     // canvasContext.translate(-player.position.x - player.width / 2, -player.position.y - player.height / 2)
@@ -20,13 +21,13 @@ function drawPlayer(canvasContext, player) {
     //     canvasContext.drawImage(playerImage, player.position.x, player.position.y, player.width, player.height)
     // }
     canvasContext.fillStyle = 'blue'
-    canvasContext.fillRect(player.position.x * 16, player.position.y * 16, player.width  * 16, player.height * 16)
+    canvasContext.fillRect(player.position.x * multipier, player.position.y * multipier, player.width  * multipier, player.height * multipier)
     canvasContext.restore()
 }
 
 function drawPlayerProjectile(canvasContext, playerProjectile) {
     canvasContext.beginPath()
-    canvasContext.arc(playerProjectile.position.x * 16, playerProjectile.position.y * 16, playerProjectile.radius * 16, 0, Math.PI * 2)
+    canvasContext.arc(playerProjectile.position.x * multipier, playerProjectile.position.y * multipier, playerProjectile.radius * multipier, 0, Math.PI * 2)
     canvasContext.fillStyle = 'red'
     canvasContext.fill()
     canvasContext.closePath()
@@ -39,12 +40,12 @@ function drawInvader(canvasContext, invader) {
     // }
     // invaderImage.src = './assets/img/invader.png'
     canvasContext.fillStyle = 'pink'
-    canvasContext.fillRect(invader.position.x * 16, invader.position.y * 16, invader.width * 16, invader.height * 16)
+    canvasContext.fillRect(invader.position.x * multipier, invader.position.y * multipier, invader.width * multipier, invader.height * multipier)
 }
 
 function drawInvaderProjectile(canvasContext, invaderProjectile) {
     canvasContext.fillStyle = 'orange'
-    canvasContext.fillRect(invaderProjectile.position.x * 16, invaderProjectile.position.y * 16, invaderProjectile.width * 16, invaderProjectile.height * 16)
+    canvasContext.fillRect(invaderProjectile.position.x * multipier, invaderProjectile.position.y * multipier, invaderProjectile.width * multipier, invaderProjectile.height * multipier)
 }
 
 export function renderSpaceInvadersGame(canvas, game) {

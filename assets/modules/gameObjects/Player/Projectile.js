@@ -1,11 +1,11 @@
-import { multiplier } from '../../../constants/tensorCanvas.js';
+import { scale } from '../../../constants/tensorCanvas.js';
 
 export default class Projectile {
     constructor({position, velocity}){
         this.position = position
         this.velocity = velocity
 
-        this.radius = 4 * multiplier
+        this.radius = 4 * scale
     }
 
     update() {

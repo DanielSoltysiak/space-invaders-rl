@@ -1,5 +1,5 @@
 import Invader from './Invader.js'
-import { multiplier } from '../../../constants/tensorCanvas.js';
+import { scale } from '../../../constants/tensorCanvas.js';
 
 export default class Grid {
     constructor() {
@@ -9,7 +9,7 @@ export default class Grid {
         }
 
         this.velocity = {
-            x: 2 * multiplier,
+            x: 2 * scale,
             y: 0
         }
 
@@ -18,8 +18,8 @@ export default class Grid {
         const columns = Math.floor(Math.random() * 10 + 5)
         const rows = Math.floor(Math.random() * 5 + 2)
 
-        this.width = columns * 30 * multiplier
-        this.height = rows * 30 * multiplier
+        this.width = columns * 30 * scale
+        this.height = rows * 30 * scale
 
         for (let x =0; x < columns; x++) {
             for (let y =0; y < rows; y++) {
@@ -27,8 +27,8 @@ export default class Grid {
                     new Invader(
                         {position: 
                             {
-                                x: x * 30 * multiplier,
-                                y: y * 30 * multiplier
+                                x: x * 30 * scale,
+                                y: y * 30 * scale
                             }
                         }
                     )
@@ -58,7 +58,7 @@ export default class Grid {
 
         if (this.position.x + this.width >= canvas.width || this.position.x <= 0) {
             this.velocity.x = -this.velocity.x
-            this.velocity.y = 30 * multiplier
+            this.velocity.y = 30 * scale
         }
         const takenSpace = []
         this.invaders.forEach(invader => {

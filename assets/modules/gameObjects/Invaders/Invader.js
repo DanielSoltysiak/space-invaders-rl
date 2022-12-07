@@ -1,5 +1,5 @@
 import InvaderProjectile from "./InvaderProjectile.js"
-import { multiplier } from '../../../constants/tensorCanvas.js';
+import { scale } from '../../../constants/tensorCanvas.js';
 
 export default class Invader {
     constructor({position}) {
@@ -8,7 +8,7 @@ export default class Invader {
             y: 0
         }
 
-        const scale = 1 * multiplier
+        const scale = 1 * scale
         this.width = 31 * scale
         this.height = 31 * scale
         this.position = {
@@ -30,7 +30,7 @@ export default class Invader {
             },
             velocity: {
                 x: 0,
-                y: 5 * multiplier
+                y: 5 * scale
             }
         }))
     }

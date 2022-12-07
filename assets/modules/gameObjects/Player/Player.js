@@ -1,4 +1,4 @@
-import { multiplier } from '../../../constants/tensorCanvas.js';
+import { scale } from '../../../constants/tensorCanvas.js';
 
 export default class Player {
     constructor(canvas) {
@@ -7,12 +7,12 @@ export default class Player {
             y: 0
         }
 
-        const scale = 0.15 * multiplier
+        const scale = 0.15 * scale
         this.width = 512 * scale 
         this.height = 512 * scale
         this.position = {
             x: canvas.width / 2 - this.width / 2,
-            y: canvas.height - this.height - 10 * multiplier
+            y: canvas.height - this.height - 10 * scale
         }
         const takenSpace = []
         // for (let i = parseInt(this.position.y) ; i < parseInt(this.position.y + this.height); i++) {
