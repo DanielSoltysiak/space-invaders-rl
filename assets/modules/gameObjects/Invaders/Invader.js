@@ -8,9 +8,9 @@ export default class Invader {
             y: 0
         }
 
-        const scale = 1 * scale
-        this.width = 31 * scale
-        this.height = 31 * scale
+        const invaderScale = 1 * scale
+        this.width = 31 * invaderScale
+        this.height = 31 * invaderScale
         this.position = {
             x: position.x,
             y: position.y

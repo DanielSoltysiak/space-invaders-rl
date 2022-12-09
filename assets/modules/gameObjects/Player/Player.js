@@ -7,9 +7,9 @@ export default class Player {
             y: 0
         }
 
-        const scale = 0.15 * scale
-        this.width = 512 * scale 
-        this.height = 512 * scale
+        const playerScale = 0.15 * scale
+        this.width = 512 * playerScale 
+        this.height = 512 * playerScale
         this.position = {
             x: canvas.width / 2 - this.width / 2,
             y: canvas.height - this.height - 10 * scale
