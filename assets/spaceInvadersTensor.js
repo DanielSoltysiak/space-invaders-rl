@@ -10,7 +10,7 @@ import invadersSpawn from './modules/actions/invadersSpawn.js';
 
 export const ALIVE_REWARD = 0.0001;
 export const KILL_REWARD = 10;
-export const DEATH_REWARD = -10000;
+export const DEATH_REWARD = -20000;
 
 export const ACTION_SHOOT = 0;
 export const ACTION_TURN_RIGHT = 1;
@@ -62,7 +62,7 @@ export class SpaceInvadersGame {
         
         this.player_.update()
 
-        invaderProjectilesAction(canvas, this.game, this.player_, this.invadersProjectiles_)
+        invaderProjectilesAction(canvas.height, this.game, this.player_, this.invadersProjectiles_)
 
         playerProjectilesAction(this.playerProjectiles_)
 
