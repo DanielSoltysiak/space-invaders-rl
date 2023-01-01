@@ -16,7 +16,7 @@ export function createDeepQNetwork(h, w, numActions) {
     const model = tf.sequential();
     model.add(tf.layers.conv2d({
         filters: 32,
-        kernelSize: 5,
+        kernelSize: 3,
         strides: 4,
         activation: 'relu',
         inputShape: [h, w, 3]
