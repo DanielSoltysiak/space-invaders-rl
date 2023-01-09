@@ -33,19 +33,19 @@ function drawPlayerProjectile(canvasContext, playerProjectile) {
     canvasContext.closePath()
 }
 
-function drawInvader(canvasContext, invader) {
-    // const invaderImage = new Image();
-    // invaderImage.onload = () => {
-    //     canvasContext.drawImage(invaderImage, invader.position.x, invader.position.y, invader.width, invader.height)
+function drawDrone(canvasContext, drone) {
+    // const droneImage = new Image();
+    // droneImage.onload = () => {
+    //     canvasContext.drawImage(droneImage, drone.position.x, drone.position.y, drone.width, drone.height)
     // }
-    // invaderImage.src = './assets/img/invader.png'
+    // droneImage.src = './assets/img/drone.png'
     canvasContext.fillStyle = 'pink'
-    canvasContext.fillRect(invader.position.x * multipier, invader.position.y * multipier, invader.width * multipier, invader.height * multipier)
+    canvasContext.fillRect(drone.position.x * multipier, drone.position.y * multipier, drone.width * multipier, drone.height * multipier)
 }
 
-function drawInvaderProjectile(canvasContext, invaderProjectile) {
+function drawDroneProjectile(canvasContext, droneProjectile) {
     canvasContext.fillStyle = 'orange'
-    canvasContext.fillRect(invaderProjectile.position.x * multipier, invaderProjectile.position.y * multipier, invaderProjectile.width * multipier, invaderProjectile.height * multipier)
+    canvasContext.fillRect(droneProjectile.position.x * multipier, droneProjectile.position.y * multipier, droneProjectile.width * multipier, droneProjectile.height * multipier)
 }
 
 export function renderSpaceInvadersGame(canvas, game) {
@@ -60,18 +60,15 @@ export function renderSpaceInvadersGame(canvas, game) {
 
     particlesAnimation(canvas, ctx, particles);
 
-    for (let i = 0; i < game.invadersProjectiles_.length; i++) {
-        drawInvaderProjectile(ctx, game.invadersProjectiles_[i])
+    for (let i = 0; i < game.dronesProjectiles_.length; i++) {
+        drawDroneProjectile(ctx, game.dronesProjectiles_[i])
     }
 
     for (let i = 0; i < game.playerProjectiles_.length; i++) {
         drawPlayerProjectile(ctx, game.playerProjectiles_[i])
     }
 
-    for (let i = 0; i < game.grids_.length; i++) {
-        for (let j = 0; j < game.grids_[i].invaders.length; j++) {
-            if(game.grids_[i].invaders[j]) {
-                drawInvader (ctx, game.grids_[i].invaders[j])}
-        }
+    for (let i = 0; i < game.drones_.length; i++) {
+        drawDrone (ctx, game.drones_[i])
     }
 }

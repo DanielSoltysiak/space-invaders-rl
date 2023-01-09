@@ -2,15 +2,17 @@ import * as tf from '@tensorflow/tfjs';
 import {assertPositiveInteger, getRandomInteger} from './utils.js';
 import { tensorCanvas as canvas } from './constants/tensorCanvas.js';
 import Player from './modules/gameObjects/Player/Player.js';
-import invaderProjectilesAction from './modules/actions/invaderProjectilesAction.js';
+import droneProjectilesAction from './modules/actions/droneProjectilesAction.js';
 import playerProjectilesAction from './modules/actions/playerProjectiesAction.js';
-import invadersAction from './modules/actions/invadersAction.js';
+import dronesAction from './modules/actions/dronesAction.js';
 import playerAction from './modules/actions/playerAction.js';
-import invadersSpawn from './modules/actions/invadersSpawn.js';
+import dronsesSpawn from './modules/actions/dronesSpawn.js';
 
-export const ALIVE_REWARD = 0.0001;
+export const ALIVE_REWARD = -0.0001;
 export const KILL_REWARD = 16;
-export const DEATH_REWARD = -20000;
+export const DEATH_REWARD = -100;
+
+export const DRONE_KILL_REWARD = 10;
 
 export const ACTION_SHOOT = 0;
 export const ACTION_TURN_RIGHT = 1;
@@ -38,8 +40,8 @@ export class SpaceInvadersGame {
 
         this.player_ = new Player(canvas)
         this.playerProjectiles_ = [];
-        this.grids_ = []
-        this.invadersProjectiles_ = [];
+        this.drones_ = dronsesSpawn();
+        this.dronesProjectiles_ = [];
         this.points_ = 0;
 
         this.reset();
@@ -48,29 +50,31 @@ export class SpaceInvadersGame {
     reset() {
         this.player_ = new Player(canvas)
         this.playerProjectiles_ = [];
-        this.grids_ = []
-        this.invadersProjectiles_ = [];
+        this.drones_ = dronsesSpawn();
+        this.dronesProjectiles_ = [];
         this.points_ = 0;
         return this.getState();
     }
 
     step(action) {
         let done = this.game.over;
+        if (this.drones_.length === 0) {
+            this.points_ += DRONE_KILL_REWARD * 3
+            if (!done) return {reward: this.points_}
+        }
         if (done) {
             return {reward: this.points_ += DEATH_REWARD, done}
         }
         
         this.player_.update()
 
-        invaderProjectilesAction(canvas.height, this.game, this.player_, this.invadersProjectiles_)
+        droneProjectilesAction(canvas.height, this.game, this.player_, this.dronesProjectiles_)
 
         playerProjectilesAction(this.playerProjectiles_)
 
-        this.points_ = invadersAction(canvas, this.frames, this.grids_, this.invadersProjectiles_, this.playerProjectiles_, this.points_)
+        this.points_ = dronesAction(this.frames, this.drones_, this.dronesProjectiles_, this.playerProjectiles_, this.points_)
 
         this.points_ = playerAction(canvas, this.player_, action, this.playerProjectiles_, this.points_)
-
-        invadersSpawn(this.frames, this.grids_)
 
         this.frames++
 
@@ -87,8 +91,8 @@ export class SpaceInvadersGame {
     getState() {
         return {
             "p": this.player_.takenSpace,
-            "i": this.grids_.map(g => g.takenSpace),
-            "ip": this.invadersProjectiles_.map(p => p.takenSpace),
+            "i": this.drones_.map(g => g.takenSpace),
+            "ip": this.dronesProjectiles_.map(p => p.takenSpace),
         }
     }
 }
