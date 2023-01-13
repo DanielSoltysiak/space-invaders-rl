@@ -8,9 +8,9 @@ import invadersAction from './modules/actions/invadersAction.js';
 import playerAction from './modules/actions/playerAction.js';
 import invadersSpawn from './modules/actions/invadersSpawn.js';
 
-export const ALIVE_REWARD = 0.0001;
-export const KILL_REWARD = 16;
-export const DEATH_REWARD = -20000;
+export const NO_KILL_REWARD = -0.2;
+export const KILL_REWARD = 10;
+export const DEATH_REWARD = -10;
 
 export const ACTION_SHOOT = 0;
 export const ACTION_TURN_RIGHT = 1;
@@ -57,7 +57,7 @@ export class SpaceInvadersGame {
     step(action) {
         let done = this.game.over;
         if (done) {
-            return {reward: this.points_ += DEATH_REWARD, done}
+            return {reward: this.points_ += DEATH_REWARD, done: done}
         }
         
         this.player_.update()

@@ -1,7 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 
 import {createDeepQNetwork} from './dqn.js';
-import { getRandomAction, NUM_ACTIONS, ALL_ACTIONS, getStateTensor } from './spaceInvadersTensor.js';
+import { getRandomAction, NUM_ACTIONS, ALL_ACTIONS, getStateTensor, KILL_REWARD } from './spaceInvadersTensor.js';
 import { ReplayMemory } from './replayMemory.js';
 import { assertPositiveInteger } from './utils.js';
 
@@ -61,10 +61,14 @@ export class GameAgent {
 
         this.cumulativeReward_ += reward;
 
+        if (reward > 0) {
+            let enemiesKilled = Math.ceil(reward/KILL_REWARD)
+            this.pointsEarned_ + enemiesKilled;
+          }
         const output = {
             action,
             cumulativeReward: this.cumulativeReward_,
-            done,
+            done: done,
             pointsEarned: this.pointsEarned_
         };
         if (done) {

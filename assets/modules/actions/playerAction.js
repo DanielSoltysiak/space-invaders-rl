@@ -1,10 +1,10 @@
 import { scale } from '../../constants/tensorCanvas.js';
-import { ACTION_SHOOT, ACTION_TURN_LEFT, ACTION_TURN_RIGHT, ALIVE_REWARD } from '../../spaceInvadersTensor.js';
+import { ACTION_SHOOT, ACTION_TURN_LEFT, ACTION_TURN_RIGHT, NO_KILL_REWARD } from '../../spaceInvadersTensor.js';
 import Projectile from '../gameObjects/Player/Projectile.js';
 
 export default function playerAction(canvas, player, action, playerProjectiles, points) {
     player.velocity.x = 0
-    points += ALIVE_REWARD
+    points += NO_KILL_REWARD
     // console.log(action)
     if(action === ACTION_TURN_LEFT && (player.position.x >= 0)) {
         player.velocity.x = -5 * scale
