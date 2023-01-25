@@ -9,7 +9,7 @@ import playerAction from './modules/actions/playerAction.js';
 import invadersSpawn from './modules/actions/invadersSpawn.js';
 
 export const NO_KILL_REWARD = -0.2;
-export const KILL_REWARD = 14;
+export const KILL_REWARD = 13;
 export const DEATH_REWARD = -10;
 
 export const ACTION_SHOOT = 0;
