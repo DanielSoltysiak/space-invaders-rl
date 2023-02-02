@@ -10,7 +10,7 @@ import invadersSpawn from './modules/actions/invadersSpawn.js';
 
 export const NO_KILL_REWARD = -0.3;
 export const KILL_REWARD = 13;
-export const DEATH_REWARD = -10;
+export const DEATH_REWARD = -11;
 
 export const ACTION_SHOOT = 0;
 export const ACTION_TURN_RIGHT = 1;
