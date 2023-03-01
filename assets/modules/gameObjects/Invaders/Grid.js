@@ -9,14 +9,14 @@ export default class Grid {
         }
 
         this.velocity = {
-            x: 2 * scale,
+            x: 1 * scale,
             y: 0
         }
 
         this.invaders = []
 
-        const columns = Math.floor(Math.random() * 10 + 5)
-        const rows = Math.floor(Math.random() * 5 + 2)
+        const columns = Math.floor(Math.random() * 10 + 3)
+        const rows = Math.floor(Math.random() * 5 + 1)
 
         this.width = columns * 30 * scale
         this.height = rows * 30 * scale
