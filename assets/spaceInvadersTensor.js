@@ -62,7 +62,7 @@ export class SpaceInvadersGame {
         
         this.player_.update()
 
-        invaderProjectilesAction(canvas.height, this.game, this.player_, this.invadersProjectiles_)
+        this.points_ = invaderProjectilesAction(canvas.height, this.game, this.player_, this.invadersProjectiles_, this.points_)
 
         playerProjectilesAction(this.playerProjectiles_)
 

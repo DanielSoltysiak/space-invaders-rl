@@ -12,21 +12,29 @@ export default function invaderProjectilesAnimation(canvas, canvasContext, game,
         if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y &&
             invaderProjectile.position.x + invaderProjectile.width >= player.position.x &&
             invaderProjectile.position.x <= player.position.x + player.width) {
-            setTimeout(() => {
-                invaderProjectiles.splice(index, 1)
-                player.opacity = 0
-                game.over = true
-            }, 0)
-
-            setTimeout(() => {
-                game.active = false
-            }, 1500) 
-
+            player.lifes -= 1
+            invaderProjectiles.splice(index, 1)
             explosion({
                 object: player,
-                color: 'red',
-                fades: false
+                color: 'orange',
+                fades: true
             }, particles)
+            if (player.lifes < 1) {
+                setTimeout(() => {
+                    player.opacity = 0
+                    game.over = true
+                }, 0)
+    
+                setTimeout(() => {
+                    game.active = false
+                }, 1500) 
+    
+                explosion({
+                    object: player,
+                    color: 'red',
+                    fades: false
+                }, particles)
+            }
         }
     })
 }

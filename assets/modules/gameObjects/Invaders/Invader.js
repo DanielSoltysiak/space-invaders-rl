@@ -30,7 +30,7 @@ export default class Invader {
             },
             velocity: {
                 x: 0,
-                y: 5 * scale
+                y: 3 * scale
             }
         }))
     }

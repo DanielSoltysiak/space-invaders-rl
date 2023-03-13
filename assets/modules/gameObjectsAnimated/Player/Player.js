@@ -1,5 +1,6 @@
 export default class Player {
     constructor(canvas) {
+        this.lifes = 3
         this.velocity = {
             x: 0,
             y: 0
