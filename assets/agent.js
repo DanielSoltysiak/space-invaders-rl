@@ -63,7 +63,7 @@ export class GameAgent {
 
         if (reward > 0) {
             let enemiesKilled = Math.ceil(reward/KILL_REWARD)
-            this.pointsEarned_ + enemiesKilled;
+            this.pointsEarned_ += enemiesKilled;
           }
         const output = {
             action,

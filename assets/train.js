@@ -51,7 +51,6 @@ export async function train(
     while (true) {
         agent.trainOnReplayBatch(batchSize, gamma, optimizer);
         const {cumulativeReward, done, pointsEarned} = agent.playStep();
-        // console.log(cumulativeReward)
         if (done) {
           const t = new Date().getTime();
           const framesPerSecond =
@@ -69,8 +68,9 @@ export async function train(
               `cumulativeReward100=${averageReward100.toFixed(2)}; ` +
               `points100=${averagePoints100.toFixed(2)} ` +
               `(epsilon=${agent.epsilon.toFixed(3)}) ` +
-              `(${framesPerSecond.toFixed(1)} frames/s)` + 
-              `cumulativeReward=${cumulativeReward}`);
+              `(${framesPerSecond.toFixed(1)} frames/s) ` + 
+              `cumulativeReward=${cumulativeReward} ` +
+              `pointsEarned=${pointsEarned}`);
           if (summaryWriter != null) {
             summaryWriter.scalar(
                 'cumulativeReward100', averageReward100, agent.frameCount);
