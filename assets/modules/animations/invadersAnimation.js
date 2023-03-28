@@ -9,7 +9,7 @@ export default function invadersAnimation(canvas, canvasContext, frames, grids, 
         grid.update(canvas)
 
         // spawn enemies projectiles 
-        if(frames % 100 === 0 && grid.invaders.length > 0) {
+        if(frames % 200 === 0 && grid.invaders.length > 0) {
             grid.invaders[Math.floor(Math.random() * grid.invaders.length)].shoot(invaderProjectiles)
         }
 

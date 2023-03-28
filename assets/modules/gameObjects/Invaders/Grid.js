@@ -9,7 +9,7 @@ export default class Grid {
         }
 
         this.velocity = {
-            x: 2 * scale,
+            x: 1.5 * scale,
             y: 0
         }
 
