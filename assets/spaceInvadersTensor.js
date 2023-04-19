@@ -33,6 +33,7 @@ export class SpaceInvadersGame {
         
         this.height = canvas.height;
         this.width = canvas.width;
+        this.increment = 0
         this.frames = frames;
         this.game = game;
 
@@ -46,6 +47,8 @@ export class SpaceInvadersGame {
     }
 
     reset() {
+        this.increment = 0
+        this.frames = 0
         this.player_ = new Player(canvas)
         this.playerProjectiles_ = [];
         this.grids_ = []
@@ -55,6 +58,10 @@ export class SpaceInvadersGame {
     }
 
     step(action) {
+        let won = this.increment === 90
+        if (won) {
+            return {reward: this.points_ += 1000, done: won}
+        }
         let done = this.game.over;
         if (done) {
             return {reward: this.points_ += DEATH_REWARD, done: done}
@@ -70,7 +77,7 @@ export class SpaceInvadersGame {
 
         this.points_ = playerAction(canvas, this.player_, action, this.playerProjectiles_, this.points_)
 
-        invadersSpawn(this.frames, this.grids_)
+        this.increment = invadersSpawn(this.increment, this.grids_)
 
         this.frames++
 

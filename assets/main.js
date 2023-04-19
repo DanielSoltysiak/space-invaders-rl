@@ -16,6 +16,7 @@ let grids = []
 let invaderProjectiles = []
 let particles = []
 
+let increment = 0
 let frames = 0
 let game = {
     over: false,
@@ -31,6 +32,7 @@ function resetGame() {
     invaderProjectiles = []
     particles = []
 
+    increment = 0
     frames = 0
     game.over = false
     game.active = true
@@ -60,7 +62,7 @@ function animate() {
 
     playerAnimation(canvas, player)
 
-    invadersSpawn(frames, grids)
+    increment = invadersSpawn(increment, grids)
 
     frames++
 }

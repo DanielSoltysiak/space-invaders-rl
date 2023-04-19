@@ -2,7 +2,8 @@ import Invader from './Invader.js'
 import { scale } from '../../../constants/tensorCanvas.js';
 
 export default class Grid {
-    constructor() {
+    constructor(invadersAmount) {
+        this.invadersAmount = invadersAmount
         this.position = {
             x: 0,
             y: 0
@@ -15,26 +16,25 @@ export default class Grid {
 
         this.invaders = []
 
-        const columns = Math.floor(Math.random() * 10 + 3)
-        const rows = Math.floor(Math.random() * 5 + 2)
+        this.invadersInRowWidth = this.invadersAmount >= 15 ? 15 : this.invadersAmount
+        this.width = this.invadersInRowWidth * 30 * scale
 
-        this.width = columns * 30 * scale
-        this.height = rows * 30 * scale
+        let x = this.position.x;
+        let y = this.position.y;
+        let invadersInRow = 0;
 
-        for (let x =0; x < columns; x++) {
-            for (let y =0; y < rows; y++) {
-                this.invaders.push(
-                    new Invader(
-                        {position: 
-                            {
-                                x: x * 30 * scale,
-                                y: y * 30 * scale
-                            }
-                        }
-                    )
-                )
+        for (let i = 0; i < invadersAmount; i++) {
+            this.invaders.push(new Invader({position: { x, y }}));
+            x += 30 * scale; // increment x position by invader width
+        
+            if (++invadersInRow >= 15) {
+              // if maximum number of invaders in row is reached, reset x position and increment y position
+              x = this.position.x;
+              y += 30 * scale; // increment y position by invader height
+              invadersInRow = 0;
             }
         }
+
         const takenSpace = []
         this.invaders.forEach(invader => {
             // for (let i = parseInt(invader.position.y) ; i <  parseInt(invader.position.y + invader.height); i++) {
